@@ -8,7 +8,6 @@
 #include "processor_support.h"
 
 #include "opencv2/core/core.hpp"
-// #include "opencv2/core/internal.hpp"  // used in llcv_equalize_hist
 
 #if DMZ_HAS_NEON_COMPILETIME
   #include <arm_neon.h>
