@@ -8,7 +8,7 @@
 #include "processor_support.h"
 
 #include "opencv2/core/core.hpp"
-#include "opencv2/core/internal.hpp"  // used in llcv_equalize_hist
+#define  CV_CAST_8U(t)  (uchar)(!((t) & ~255) ? (t) : (t) > 0 ? 255 : 0)
 
 #if DMZ_HAS_NEON_COMPILETIME
   #include <arm_neon.h>
@@ -119,7 +119,7 @@ DMZ_INTERNAL void llcv_equalize_hist(const IplImage *srcimg, IplImage *dstimg) {
   
   CV_Assert( CV_ARE_SIZES_EQ(src, dst) && CV_ARE_TYPES_EQ(src, dst) &&
             CV_MAT_TYPE(src->type) == CV_8UC1 );
-  CvSize size = cvGetMatSize(src);
+  CvSize size = cvGetSize(src);
   if( CV_IS_MAT_CONT(src->type & dst->type) )
   {
     size.width *= size.height;
