@@ -8,6 +8,7 @@
 #include "processor_support.h"
 
 #include "opencv2/core/core.hpp"
+#define  CV_CAST_8U(t)  (uchar)(!((t) & ~255) ? (t) : (t) > 0 ? 255 : 0)
 
 #if DMZ_HAS_NEON_COMPILETIME
   #include <arm_neon.h>
@@ -144,7 +145,7 @@ DMZ_INTERNAL void llcv_equalize_hist(const IplImage *srcimg, IplImage *dstimg) {
   {
     sum += hist[i];
     int val = cvRound(sum*scale);
-    lut[i] = val;
+    lut[i] = CV_CAST_8U(val);
   }
   
   lut[0] = 0;
