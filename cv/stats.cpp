@@ -8,6 +8,10 @@
 #include "processor_support.h"
 
 #include "opencv2/core/core.hpp"
+#define CV_Error(code, msg) do { (void)(code); (void)(msg); abort(); } while (0)
+#define CV_Error_(code, args) do { (void)(code); (void)(cv::format args); abort(); } while (0)
+#define CV_Assert( expr ) do { if (!(expr)) abort(); } while (0)
+
 #define  CV_CAST_8U(t)  (uchar)(!((t) & ~255) ? (t) : (t) > 0 ? 255 : 0)
 
 #if DMZ_HAS_NEON_COMPILETIME
