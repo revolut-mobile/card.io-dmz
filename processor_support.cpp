@@ -36,12 +36,13 @@ AndroidProcessorSupport get_android_processor_support(void) {
 
       // default to no support
       androidProcessor = AndroidProcessorNoSupport;
+      uint64_t cpuFeatures = android_getCpuFeatures();
 
       // it is important to check the CPU family before the features, since the results will collide if called on
       // an X86 processor.
       if (android_getCpuFamily() == ANDROID_CPU_FAMILY_ARM) {
 
-          uint64_t cpuFeatures = android_getCpuFeatures();
+//          uint64_t cpuFeatures = android_getCpuFeatures();
           if (cpuFeatures & ANDROID_CPU_ARM_FEATURE_NEON) {
             /* From android-ndk-r8/docs/CPU-FEATURES.html:
              *
@@ -72,6 +73,9 @@ AndroidProcessorSupport get_android_processor_support(void) {
              */
               androidProcessor = AndroidProcessorHasVFP3_16;
           }
+      } else if(android_getCpuFamily() == ANDROID_CPU_FAMILY_ARM64
+                || android_getCpuFamily() == ANDROID_CPU_FAMILY_X86_64) {
+          androidProcessor = AndroidProcessorHasVFP3_16;
       }
       dmz_debug_log("androidProcessor: %i", androidProcessor);
     }

@@ -49,10 +49,6 @@
 #include "canny.h"
 #include "sobel.h"
 #include "opencv2/core/core.hpp" // needed for IplImage
-#define CV_Error(code, msg) do { (void)(code); (void)(msg); abort(); } while (0)
-#define CV_Error_(code, args) do { (void)(code); (void)(cv::format args); abort(); } while (0)
-#define CV_Assert( expr ) do { if (!(expr)) abort(); } while (0)
-
 
 #if DMZ_HAS_NEON_COMPILETIME
   #include <arm_neon.h>

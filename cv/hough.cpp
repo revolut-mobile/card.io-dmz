@@ -46,9 +46,6 @@
 
 #include "hough.h"
 #include "opencv2/core/core.hpp"
-#define CV_Error(code, msg) do { (void)(code); (void)(msg); abort(); } while (0)
-#define CV_Error_(code, args) do { (void)(code); (void)(cv::format args); abort(); } while (0)
-#define CV_Assert( expr ) do { if (!(expr)) abort(); } while (0)
 #define TO_RADIANS(in_degrees) (CV_PI * (in_degrees) / 180.0f)
 
 DMZ_INTERNAL CvLinePolar llcv_hough(const CvArr *src_image, IplImage *dx, IplImage *dy, float rho, float theta, int threshold, float theta_min, float theta_max, bool vertical, float gradient_angle_threshold) {
