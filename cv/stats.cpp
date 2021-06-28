@@ -8,7 +8,6 @@
 #include "processor_support.h"
 
 #include "opencv2/core/core.hpp"
-
 #define  CV_CAST_8U(t)  (uchar)(!((t) & ~255) ? (t) : (t) > 0 ? 255 : 0)
 
 #if DMZ_HAS_NEON_COMPILETIME

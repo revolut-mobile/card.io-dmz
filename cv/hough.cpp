@@ -46,6 +46,7 @@
 
 #include "hough.h"
 #include "opencv2/core/core.hpp"
+
 #define TO_RADIANS(in_degrees) (CV_PI * (in_degrees) / 180.0f)
 
 DMZ_INTERNAL CvLinePolar llcv_hough(const CvArr *src_image, IplImage *dx, IplImage *dy, float rho, float theta, int threshold, float theta_min, float theta_max, bool vertical, float gradient_angle_threshold) {
