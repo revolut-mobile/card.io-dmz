@@ -72,6 +72,9 @@ AndroidProcessorSupport get_android_processor_support(void) {
              */
               androidProcessor = AndroidProcessorHasVFP3_16;
           }
+      } else if(android_getCpuFamily() == ANDROID_CPU_FAMILY_ARM64
+                || android_getCpuFamily() == ANDROID_CPU_FAMILY_X86_64) {
+          androidProcessor = AndroidProcessorHasVFP3_16;
       }
       dmz_debug_log("androidProcessor: %i", androidProcessor);
     }
